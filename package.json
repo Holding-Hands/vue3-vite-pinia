@@ -8,10 +8,16 @@
     "build": "vue-tsc && vite build",
     "build:prod": "vue-tsc && vite build --mode .env.production",
     "preview": "vite preview",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint:eslint": "eslint --ext .js,.vue src --fix",
+    "lint:staged": "lint-staged -c ./lintstagedrc.js --allow-empty",
+    "lint:stylelint": "stylelint src/**/*.{vue,css,scss} --fix"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix"
+    "*.{ts,js,vue}": [
+      "eslint --fix",
+      "git add ."
+    ]
   },
   "dependencies": {
     "@typescript-eslint/parser": "^7.5.0",
@@ -25,6 +31,8 @@
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@types/node": "^20.12.5",
     "@vitejs/plugin-vue": "^5.0.4",
     "eslint": "^8.57.0",
