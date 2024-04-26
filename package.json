@@ -14,21 +14,23 @@
     "lint:stylelint": "stylelint src/**/*.{vue,css,scss} --fix"
   },
   "lint-staged": {
-    "*.{ts,js,vue}": [
+    "*.{vue,js,ts,tsx,jsx}": [
       "eslint --fix",
-      "git add ."
+      "prettier --write --ignore-unknown"
     ]
   },
   "dependencies": {
     "@typescript-eslint/parser": "^7.5.0",
     "axios": "^1.6.8",
     "element-plus": "^2.6.3",
+    "mitt": "^3.0.1",
     "normalize.css": "^8.0.1",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
     "terser": "^5.30.3",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "vuex": "4"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",

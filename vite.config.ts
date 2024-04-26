@@ -16,11 +16,10 @@ export default defineConfig(({ mode }) => {
   // loadEnv传入三个参数
   // mode：模式 envDir：环境变量配置文件所在目录 prefix：接受的环境变量前缀，默认为 VITE_
   const env = loadEnv(mode, process.cwd())
-  console.log(env, 'env')
   return {
     plugins: [
       vue(),
-      eslint({ lintOnStart: false }), // 项目运行时对其进行eslint检查,
+      eslint({ lintOnStart: true }), // 项目运行时对其进行eslint检查,
       AutoImport({
         include: [
           /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx

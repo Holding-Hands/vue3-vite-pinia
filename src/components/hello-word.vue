@@ -72,4 +72,10 @@ const handleRemove = () => {
 const { upload } = toRefs(state)
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.upload-demo {
+  .el-upload__text {
+    color: cyan;
+  }
+}
+</style>
