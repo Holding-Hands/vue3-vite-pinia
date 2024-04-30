@@ -6,6 +6,14 @@ const routes: Array<typeof RouteRecordRaw> = [
     path: '/',
     redirect: '/login',
   },
+  {
+    path: '/login',
+    component: () => import('@/view/login/login.vue'),
+  },
+  {
+    path: '/main',
+    component: () => import('@/view/main/main.vue'),
+  },
 ]
 
 const router = createRouter({

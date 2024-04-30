@@ -6,7 +6,9 @@
   "bracketSpacing": true,
   "arrowParens": "always",
   "printWidth": 120,
-  "disableLanguages": ["vue"],
+  "disableLanguages": [
+    "vue"
+  ],
   "endOfLine": "auto",
   "eslintIntegration": false,
   "jsxBracketSameLine": false,
@@ -18,15 +20,21 @@
   "overrides": [
     {
       "files": "*.wxml",
-      "options": { "parser": "html" }
+      "options": {
+        "parser": "html"
+      }
     },
     {
       "files": "*.wxss",
-      "options": { "parser": "css" }
+      "options": {
+        "parser": "css"
+      }
     },
     {
       "files": "*.wxs",
-      "options": { "parser": "babel" }
+      "options": {
+        "parser": "babel"
+      }
     }
   ],
   "[javascript]": {
