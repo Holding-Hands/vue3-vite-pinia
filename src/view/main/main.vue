@@ -1,10 +1,8 @@
 <template>
   <div class="main">
     <el-container class="main-content">
-      <!--      <el-aside :width="isCollapse ? '60px' : '210px'">-->
       <el-aside width="210px">
-        <!--        <nav-menu :collapse="isCollapse" />-->
-        Aside
+        <layout-menu />
       </el-aside>
       <el-container class="page">
         <el-header class="page-header">
@@ -26,7 +24,6 @@ const params = {
   name: 'coderwhy',
   password: '123456',
 }
-console.log(111)
 login(params).then((res) => {
   console.log(res)
 })

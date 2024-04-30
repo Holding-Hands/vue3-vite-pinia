@@ -20,7 +20,6 @@ module.exports = {
     'vue/no-v-model-argument': 'off',
     'no-undef': 'error',
     'prettier/prettier': 'error',
-    'no-unused-vars': 'off',
   },
   globals: {
     $ref: 'readonly',

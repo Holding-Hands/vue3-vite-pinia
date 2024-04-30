@@ -17,7 +17,9 @@ declare module 'vue' {
     ElInput: (typeof import('element-plus/es'))['ElInput']
     ElMain: (typeof import('element-plus/es'))['ElMain']
     ElUpload: (typeof import('element-plus/es'))['ElUpload']
-    HelloWord: (typeof import('./src/components/hello-word.vue'))['default']
+    Layout: (typeof import('./src/layout/layout/index.vue'))['default']
+    LayoutHeader: (typeof import('./src/layout/layout-header/index.vue'))['default']
+    LayoutMenu: (typeof import('./src/layout/layout-menu/index.vue'))['default']
     RouterLink: (typeof import('vue-router'))['RouterLink']
     RouterView: (typeof import('vue-router'))['RouterView']
   }

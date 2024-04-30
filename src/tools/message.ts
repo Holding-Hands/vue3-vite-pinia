@@ -26,6 +26,7 @@ export function handleError(error: unknown, message = '发生未知错误!'): vo
 }
 
 // 定义异步操作的类型。它接受任意参数并返回一个 Promise。
+// eslint-disable-next-line no-unused-vars
 type AsyncOperation<T = any> = (...args: any[]) => Promise<T>
 
 /**

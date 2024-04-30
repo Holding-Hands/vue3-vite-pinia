@@ -26,13 +26,13 @@
 <script setup lang="ts">
 import type { FormInstance } from 'element-plus'
 import { ElMessage } from 'element-plus'
-import { handleAsyncOperation, handleError } from '@/tools/message.ts'
+import { handleError } from '@/tools/message.ts'
 
 const router = useRouter()
 const state = reactive({
   form: {
-    username: '', // 账号
-    password: null as null | number, // 密码
+    username: 'admin', // 账号
+    password: 123456 as null | number, // 密码
   },
 })
 

@@ -9,7 +9,6 @@ const params = {
   name: 'coderwhy',
   password: '123456',
 }
-console.log(111)
 login(params).then((res) => {
   console.log(res)
 })

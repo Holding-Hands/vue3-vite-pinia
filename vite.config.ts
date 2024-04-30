@@ -6,6 +6,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 
 import { loadEnv } from 'vite'
+
 const isProduction = process.env.NODE_ENV === 'production'
 // const { name }: Record<string, any> = require('./package.json')
 const timeStamp = new Date().getTime()
@@ -38,18 +39,20 @@ export default defineConfig(({ mode }) => {
         // 按需导入element-plus
         resolvers: [ElementPlusResolver()],
       }),
-      // 按需导入element-plus
       Components({
+        // 按需导入element-plus
         resolvers: [ElementPlusResolver()],
-      }),
-      Components({
-        dirs: ['src/components', 'src/views'],
+        dts: true, // 生成 `.d.ts` 文件
+        deep: true,
+        include: [/\.vue$/, /\.vue\?vue/], // 包含文件的正则表达式
+        extensions: ['vue'],
+        dirs: ['src/components', 'src/views', 'src/layout'],
       }),
     ],
     // 反向代理解决跨域问题
     server: {
-      host: 'localhost', // 只能本地访问
-      // host: '0.0.0.0', // 局域网别人也可访问
+      // host: 'localhost', // 只能本地访问
+      host: '0.0.0.0', // 局域网别人也可访问
       port: Number(env.VITE_APP_PORT),
       // 运行时自动打开浏览器
       open: true,
@@ -71,6 +74,7 @@ export default defineConfig(({ mode }) => {
         '@static': '/public/static',
         '@mitt': '/src/mitt',
         '@styles': '/src/styles',
+        '@layout': '/src/layout',
         '@router': '/src/router',
         '@store': '/src/store',
       },
