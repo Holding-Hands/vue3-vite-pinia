@@ -21,7 +21,7 @@ export function handleError(error: unknown, message = '发生未知错误!'): vo
     ElMessage.error(error.message || message)
   } else {
     // 如果不是 Error 实例，显示一个通用的错误消息
-    ElMessage.error(message)
+    ElMessage.error((error as any)?.data || message)
   }
 }
 
@@ -39,6 +39,7 @@ export async function handleAsyncOperation<T = any>(operation: AsyncOperation<T>
     const result = await operation(...params)
     return result
   } catch (error: unknown) {
+    console.log(error, 'error')
     // 错误处理，根据错误类型显示消息
     handleError(error)
     return null

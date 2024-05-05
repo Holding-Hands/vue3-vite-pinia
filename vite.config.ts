@@ -60,8 +60,8 @@ export default defineConfig(({ mode }) => {
         // env种获取的代理 /api
         [env.VITE_BASE_API]: {
           target: env.VITE_BASE_BASE_API,
+          rewrite: (path) => path.replace(new RegExp('^' + env.VITE_BASE_API), ''),
           changeOrigin: true,
-          rewrite: (path) => path.replace(new RegExp('^' + env.VITE_APP_BASE_API), ''),
         },
       },
     },

@@ -14,6 +14,7 @@ const service: AxiosInstance = axios.create({
 // 请求拦截
 service.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   // 这里可以设置token: config!.headers!.Authorization = token
+  console.log(config)
   return config
 })
 

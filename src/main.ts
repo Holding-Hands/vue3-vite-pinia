@@ -1,5 +1,4 @@
 import { createApp } from 'vue'
-import { globalRegister } from './global'
 import App from './App.vue'
 // 引入element-plus
 import ElementPlus from 'element-plus'
@@ -14,7 +13,8 @@ import '@/styles/index.scss'
 // 引入pinia
 import pinia from '@/store/pinia'
 import piniaPluginPersistedState from 'pinia-plugin-persistedstate'
+
 pinia.use(piniaPluginPersistedState)
 const app = createApp(App)
-app.use(ElementPlus).use(router).use(globalRegister).use(pinia)
+app.use(ElementPlus).use(router).use(pinia)
 app.mount('#app')

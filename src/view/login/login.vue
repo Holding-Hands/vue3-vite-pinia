@@ -4,8 +4,8 @@
     <div class="content">
       <el-form ref="formRef" class="el-form" :model="form" :rules="rules">
         <!--  账号-->
-        <el-form-item label="账 号" prop="username">
-          <el-input v-model="form.username" size="large" placeholder="请输入账号" />
+        <el-form-item label="账 号" prop="name">
+          <el-input v-model="form.name" size="large" placeholder="请输入账号" />
         </el-form-item>
 
         <!--   密码-->
@@ -25,16 +25,17 @@
 
 <script setup lang="ts">
 import type { FormInstance } from 'element-plus'
-import { ElMessage } from 'element-plus'
-import { handleError } from '@/tools/message.ts'
+import { handleAsyncOperation } from '@/tools/message.ts'
 
 const router = useRouter()
 const state = reactive({
   form: {
-    username: 'admin', // 账号
+    name: 'coderwhy', // 账号
     password: 123456 as null | number, // 密码
   },
 })
+
+import { login } from '@/api/login/login'
 
 // 使用ref获取对表单的引用
 const formRef = ref<FormInstance>()
@@ -44,7 +45,7 @@ const validate = (msg) => (_rule: any, value: any, callback: any) => {
 }
 
 const rules = {
-  username: [{ validator: validate('请输入账号!'), trigger: ['blur', 'trigger'], required: true }],
+  name: [{ validator: validate('请输入账号!'), trigger: ['blur', 'trigger'], required: true }],
   password: [{ validator: validate('请输入密码!'), trigger: ['blur', 'trigger'], required: true }],
 }
 
@@ -58,15 +59,10 @@ const handleResetForm = () => {
 const handleLogin = async () => {
   const isValid = formRef?.value?.validate()
   if (isValid) {
-    try {
-      if (state.form.username === 'admin' && state.form.password === 123456) {
-        ElMessage.success('登陆成功！')
-        router.push('/main')
-        return
-      }
-      ElMessage.error('请输入正确的账号或密码！')
-    } catch (error) {
-      handleError(error || '系统错误！')
+    const res = await handleAsyncOperation(login, state.form)
+    if (res) {
+      ElMessage.success('登陆成功！')
+      router.push('/main')
     }
   }
 }
