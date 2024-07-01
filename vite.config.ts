@@ -35,14 +35,14 @@ export default defineConfig(({ mode }) => {
           globalsPropValue: true,
         },
         // 声明文件生成位置和文件名称
-        dts: './src/auto-import.d.ts',
+        dts: './src/type/auto-import.d.ts',
         // 按需导入element-plus
         resolvers: [ElementPlusResolver()],
       }),
       Components({
         // 按需导入element-plus
         resolvers: [ElementPlusResolver()],
-        dts: true, // 生成 `.d.ts` 文件
+        dts: './src/type/components.d.ts', // 生成 `.d.ts` 文件
         deep: true,
         include: [/\.vue$/, /\.vue\?vue/], // 包含文件的正则表达式
         extensions: ['vue'],
