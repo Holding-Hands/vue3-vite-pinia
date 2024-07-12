@@ -36,28 +36,28 @@ export function findNodeByField<T, K extends keyof T>(node: T, key: K, value: T[
  * @param parent 当前节点的父节点，默认为null。
  * @return 找到的节点的父节点或null。
  */
-export function findParentNode<
-  T extends {
-    children?: T[]
-  },
-  K extends keyof T,
->(node: T, key: K, value: T[K], parent: T | null = null): T | null {
-  // 检查当前节点的指定字段是否匹配
-  if (node[key] === value) {
-    return parent
-  }
-
-  // 如果当前节点有子节点，递归搜索每个子节点
-  if (node.children) {
-    for (let child of node.children) {
-      const result = findParentNode(child, key, value, node) // 将当前节点作为父节点传递
-      if (result) return result
-    }
-  }
-
-  // 如果没有找到匹配的节点的父节点，返回null
-  return null
-}
+// export function findParentNode<
+//   T extends {
+//     children?: T[]
+//   },
+//   K extends keyof T,
+// >(node: T, key: K, value: T[K], parent: T | null = null): T | null {
+//   // 检查当前节点的指定字段是否匹配
+//   if (node[key] === value) {
+//     return parent
+//   }
+//
+//   // 如果当前节点有子节点，递归搜索每个子节点
+//   if (node.children) {
+//     for (let child of node.children) {
+//       const result = findParentNode(child, key, value, node) // 将当前节点作为父节点传递
+//       if (result) return result
+//     }
+//   }
+//
+//   // 如果没有找到匹配的节点的父节点，返回null
+//   return null
+// }
 
 /**
  * 查找树形结构中的节点，并返回所有祖先节点或其特定字段值的数组。
@@ -90,4 +90,38 @@ export function findAllAncestors<
 
   // 如果没有找到目标节点，返回空数组
   return []
+}
+
+interface TreeNode {
+  children?: TreeNode[]
+  disabled?: boolean
+  label?: string
+  value?: string | number
+}
+
+/**
+ * 查找树形结构中的节点，并返回该节点的父节点。
+ * @param nodes 当前节点。
+ * @param key 要匹配的字段。
+ * @param value 要匹配的字段值。
+ * @return 找到的节点的父节点或null。
+ */
+export function findParentNode(nodes: TreeNode[], key: keyof TreeNode, value: any): TreeNode | null {
+  function search(nodes: TreeNode[], key: keyof TreeNode, value: any, parent: TreeNode | null): TreeNode | null {
+    for (const node of nodes) {
+      if (node[key] === value) {
+        return parent
+      }
+
+      if (node.children) {
+        const result = search(node.children, key, value, node)
+        if (result) {
+          return result
+        }
+      }
+    }
+    return null
+  }
+
+  return search(nodes, key, value, null)
 }
