@@ -7,11 +7,18 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    DragableTable: (typeof import('./../components/DragableTable.vue'))['default']
+    DraggableTable: (typeof import('./../components/DraggableTable/DraggableTable.vue'))['default']
     ElButton: (typeof import('element-plus/es'))['ElButton']
     ElConfigProvider: (typeof import('element-plus/es'))['ElConfigProvider']
     ElForm: (typeof import('element-plus/es'))['ElForm']
     ElFormItem: (typeof import('element-plus/es'))['ElFormItem']
+    ElIcon: (typeof import('element-plus/es'))['ElIcon']
     ElInput: (typeof import('element-plus/es'))['ElInput']
+    ElTable: (typeof import('element-plus/es'))['ElTable']
+    ElTableColumn: (typeof import('element-plus/es'))['ElTableColumn']
+    Example: (typeof import('./../components/DraggableTable/example.vue'))['default']
+    IEpMenu: (typeof import('~icons/ep/menu'))['default']
     LayoutHeader: (typeof import('./../layout/layout-header/index.vue'))['default']
     LayoutMenu: (typeof import('./../layout/layout-menu/index.vue'))['default']
     RouterLink: (typeof import('vue-router'))['RouterLink']

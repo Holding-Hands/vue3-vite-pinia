@@ -14,6 +14,10 @@ const routes: Array<typeof RouteRecordRaw> = [
     path: '/main',
     component: () => import('@/view/main/main.vue'),
   },
+  {
+    path: '/DraggableTable',
+    component: () => import('@components/DraggableTable/example.vue'),
+  },
 ]
 
 const router = createRouter({

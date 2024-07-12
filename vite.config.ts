@@ -4,8 +4,13 @@ import vue from '@vitejs/plugin-vue'
 import eslint from 'vite-plugin-eslint'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+import Icons from 'unplugin-icons/vite'
 
 import { loadEnv } from 'vite'
+
+// import path from 'path'
+// const pathSrc = path.resolve(__dirname, 'src')
 
 const isProduction = process.env.NODE_ENV === 'production'
 // const { name }: Record<string, any> = require('./package.json')
@@ -37,22 +42,37 @@ export default defineConfig(({ mode }) => {
         // 声明文件生成位置和文件名称
         dts: './src/type/auto-import.d.ts',
         // 按需导入element-plus
-        resolvers: [ElementPlusResolver()],
+        resolvers: [
+          ElementPlusResolver(),
+          // 自动导入图标组件
+          IconsResolver({
+            prefix: 'Icon',
+          }),
+        ],
       }),
       Components({
         // 按需导入element-plus
-        resolvers: [ElementPlusResolver()],
+        resolvers: [
+          ElementPlusResolver(),
+          // 自动注册图标组件
+          IconsResolver({
+            enabledCollections: ['ep'],
+          }),
+        ],
         dts: './src/type/components.d.ts', // 生成 `.d.ts` 文件
         deep: true,
         include: [/\.vue$/, /\.vue\?vue/], // 包含文件的正则表达式
         extensions: ['vue'],
         dirs: ['src/components', 'src/views', 'src/layout'],
       }),
+      Icons({
+        autoInstall: true,
+      }),
     ],
     // 反向代理解决跨域问题
     server: {
       // host: 'localhost', // 只能本地访问
-      host: '0.0.0.0', // 局域网别人也可访问
+      // host: '0.0.0.0', // 局域网别人也可访问
       port: Number(env.VITE_APP_PORT),
       // 运行时自动打开浏览器
       open: true,
